@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1346bddd-11e6-40af-9a8f-dbf4d05f42b3" name="Changes" comment="简单模仿实现Tomcat服务器">
-      <change afterPath="$PROJECT_DIR$/src/dsl/HttpServer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tomcat/TomcatServer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/tomcat/TomcatServer.kt" afterDir="false" />
+    <list default="true" id="1346bddd-11e6-40af-9a8f-dbf4d05f42b3" name="Changes" comment="实现Dsl风格的Http服务器方式">
+      <change afterPath="$PROJECT_DIR$/img/1.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +103,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1718616413747</updated>
-      <workItem from="1718616415180" duration="9513000" />
+      <workItem from="1718616415180" duration="9962000" />
     </task>
     <task id="LOCAL-00001" summary="Init">
       <option name="closed" value="true" />
@@ -124,7 +121,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718619253177</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="实现Dsl风格的Http服务器方式">
+      <option name="closed" value="true" />
+      <created>1718632046583</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1718632046583</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,6 +149,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Init" />
     <MESSAGE value="简单模仿实现Tomcat服务器" />
-    <option name="LAST_COMMIT_MESSAGE" value="简单模仿实现Tomcat服务器" />
+    <MESSAGE value="实现Dsl风格的Http服务器方式" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现Dsl风格的Http服务器方式" />
   </component>
 </project>
