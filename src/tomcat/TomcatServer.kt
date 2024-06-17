@@ -63,10 +63,10 @@ class HttpServletRequestImpl(private val inputStream: InputStream) : HttpServlet
     private var path = ""
 
     init {
-        readAndParse(inputStream)
+        parse(inputStream)
     }
 
-    private fun readAndParse(inputStream: InputStream) {
+    private fun parse(inputStream: InputStream) {
         val scanner = Scanner(inputStream)
         parseRequestLine(scanner.nextLine())
         while (true) {
@@ -175,7 +175,7 @@ class HttpServletResponseImpl(private val outputStream: OutputStream) : HttpServ
             heads.append("${name}: ").append("${value}\r\n")
         }
         heads.append("\r\n")
-        println("seadResponseHead: " + heads.toString())
+        println("seadResponseHead: $heads")
         outputStream.write(heads.toString().toByteArray())
     }
 
@@ -250,18 +250,10 @@ class HelloServlet : HttpServlet() {
 
 class ImgServlet : HttpServlet() {
     override fun service(req: HttpServletRequest, resp: HttpServletResponse) {
-
         val file = File("./img/img.jpg")
         resp.setContentType(URLConnection.guessContentTypeFromName(file.name))
 
         val output = resp.getOutputStream()
-        /*val input = file.inputStream()
-        val buffer = ByteArray(DEFAULT_BUFFER_SIZE)
-        var len = 0
-        while (input.read(buffer).also { len = it } != -1) {
-            output.write(buffer, 0, len)
-        }*/
-
         output.write(file.inputStream().readAllBytes())
     }
 }
@@ -274,8 +266,6 @@ class LoginServlet : HttpServlet() {
 
         println("username: $username, password: $password")
 
-        // TODO: 验证用户名密码是否正确
-        // TODO: 设置 Session 信息
         resp.setContentType("text/plain; charset=utf-8")
         val writer: PrintWriter = resp.getWriter()
         writer.println("登录成功!")
@@ -303,57 +293,3 @@ object WebXML {
     }
 
 }
-
-fun main() {
-//    val path = "name=li&value=3"
-//    val path3 = "name=li" // ?
-//    val group = path.split("&")
-//    val group3 = path3.split("&")
-//    val s1 = " /homebd/egf.gif?authorization=bce&name=glp"
-//    val s2 = " /homebd/egf.gif?authorization=bce"
-//    val s3 = " /homebd/egf.gif"
-//    parsePath(s1)
-//    parsePath(s2)
-//    parsePath(s3) //error
-
-    val heads = "Host: static.home.baidu.com\r\n" +
-            "Connection: keep-alive\r\n" +
-            "Pragma: no-cache\r\n" +
-            "Cache-Control: no-cache\r\n\r\n"
-    val headInput = ByteArrayInputStream(heads.toByteArray())
-    val scanner = Scanner(headInput)
-    parseHeader(scanner)
-}
-
-/*  请求头
-    Host: static.home.baidu.com
-    Connection: keep-alive
-    Pragma: no-cache
-    Cache-Control: no-cache
-    */
-private fun parseHeader(scanner: Scanner) {
-    while (scanner.hasNext()) {
-        val head = scanner.nextLine()
-        if (head.isBlank()) break // blank "\r\n".isblank is true
-        val group = head.split(":")
-        val key = group[0]
-        val value = group[1].trim()
-    }
-}
-
-private fun parsePath(url: String) {
-    // /homebd/egf.gif?authorization=bce&name=glp
-    val group = url.split("?")
-    val path = URLDecoder.decode(group[0], "UTF-8")
-
-    // authorization=bce&name=glp
-    if (group.size == 1) return
-    val fragments = group[1].split("&") // TODO: Maybe param is null
-    fragments.forEach {
-        val param = it.split("=")
-        val name = param[0]
-        val value = param[1]
-//        this.parameter[name] = value
-    }
-}
-
